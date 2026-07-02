@@ -76,3 +76,12 @@ jobs:
         run: ls
       - name: Deploy
         run: echo "Deploying..."
+  report:
+    if: failure()
+    needs: [lint, test, build, deploy]
+    runs-on: ubuntu-slim
+    steps:
+      - name: Output information
+        run: |
+          echo "Something went wrong during the workflow execution."
+          echo "${GITHUB_WORKFLOW} workflow failed."
