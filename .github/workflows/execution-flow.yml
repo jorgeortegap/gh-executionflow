@@ -8,6 +8,8 @@ jobs:
   lint:
     runs-on: ubuntu-slim
     steps:
+      - name: GITHUB_ACTOR
+        run: echo "Workflow triggered by ${{ github.actor }}"
       - name: Get code
         uses: actions/checkout@v7
       - name: Cache dependencies
